@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "SmartTrip",
+    "slug": "smarttrip",
+    "scheme": "smarttrip",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow SmartTrip to access your camera so you can capture travel photos."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow SmartTrip to use your location to find nearby places and build your trip."
+        }
+      ]
+    ],
+    "android": {
+      "package": "com.smarttrip.app"
+    }
+  }
+}

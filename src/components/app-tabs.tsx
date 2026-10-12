@@ -1,32 +1,68 @@
-import { NativeTabs } from 'expo-router/unstable-native-tabs';
-import { useColorScheme } from 'react-native';
 
-import { Colors } from '@/constants/theme';
+import {
+  Tabs,
+  TabList,
+  TabTrigger,
+  TabSlot,
+} from 'expo-router/ui';
+
+import {
+  Pressable,
+  View,
+  Text,
+  StyleSheet,
+} from 'react-native';
 
 export default function AppTabs() {
-  const scheme = useColorScheme();
-  const colors = Colors[scheme === 'unspecified' ? 'light' : scheme];
-
   return (
-    <NativeTabs
-      backgroundColor={colors.background}
-      indicatorColor={colors.backgroundElement}
-      labelStyle={{ selected: { color: colors.text } }}>
-      <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require('@/assets/images/tabIcons/home.png')}
-          renderingMode="template"
-        />
-      </NativeTabs.Trigger>
+    <Tabs>
+      <View style={styles.container}>
+        <TabSlot />
+      </View>
 
-      <NativeTabs.Trigger name="explore">
-        <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
-          renderingMode="template"
-        />
-      </NativeTabs.Trigger>
-    </NativeTabs>
+      <View style={styles.tabBar}>
+        <TabList style={styles.tabList}>
+          <TabTrigger name="home" href="/" asChild>
+            <Pressable style={styles.tabButton}>
+              <Text style={styles.tabText}>⌂  Home</Text>
+            </Pressable>
+          </TabTrigger>
+
+          <TabTrigger name="explore" href="/explore" asChild>
+            <Pressable style={styles.tabButton}>
+              <Text style={styles.tabText}>⌕  Explore</Text>
+            </Pressable>
+          </TabTrigger>
+        </TabList>
+      </View>
+    </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  tabBar: {
+    backgroundColor: '#FFFFFF',
+    borderTopWidth: 1,
+    borderTopColor: '#E5E7EB',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+  },
+  tabList: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  tabButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+  },
+  tabText: {
+    color: '#176B65',
+    fontSize: 15,
+    fontWeight: '600',
+  },
+});
